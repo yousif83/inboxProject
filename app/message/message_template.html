@@ -1,0 +1,33 @@
+<div class="row message   "
+    ng-class="{
+      read:$ctrl.data.read,
+      selected: $ctrl.data.selected
+    }">
+  <div class="col-xs-1">
+    <div class="row">
+      <div class="col-xs-2">
+        <input type="checkbox"
+        ng-model="selected"
+        ng-click="$ctrl.checkedMessage(selected,$ctrl.data)"
+        ng-checked=$ctrl.data.selected
+        >
+       </input>
+      </div>
+      <div class="col-xs-2">
+        <i class="star fa  "
+        ng-click="$ctrl.starMessage($ctrl.data)"
+        ng-class="{
+          'fa-star':$ctrl.data.starred ,
+          'fa-star-o':!$ctrl.data.starred
+        }"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-11">
+     <span class="label label-warning"
+     ng-repeat="label in $ctrl.data.labels">{{label}}</span>
+    <a href="#">
+    {{$ctrl.data.subject}}
+    </a>
+  </div>
+</div>

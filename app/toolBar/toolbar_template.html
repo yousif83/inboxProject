@@ -1,0 +1,54 @@
+
+<div class="row toolbar">
+  <div class="col-md-12">
+    <p class="pull-right">
+      <span class="badge badge">{{$ctrl.countUnreadMessages($ctrl.datamsgs)}}</span>
+      unread messages
+    </p>
+
+    <button class="btn btn-default">
+      <i class="fa "
+
+      ng-click="$ctrl.changeSelect($ctrl.datamsgs)"
+      ng-class="{
+        'fa-square-o':$ctrl.allNotSelected($ctrl.datamsgs),
+        'fa-minus-square-o':$ctrl.someSelected($ctrl.datamsgs),
+        'fa-check-square-o':$ctrl.allSelected($ctrl.datamsgs)
+      }"></i>
+
+    </button>
+
+    <button class="btn btn-default"
+    ng-click="$ctrl.markAsRead($ctrl.datamsgs)">
+     Mark As Read
+    </button>
+
+    <button class="btn btn-default"
+    ng-click="$ctrl.markAsUnRead($ctrl.datamsgs)">
+      Mark As Unread
+    </button>
+
+    <select class="form-control label-select"
+     ng-model="selectedLabel"
+     ng-Change="$ctrl.addLabel($ctrl.datamsgs,selectedLabel)">
+      <option   >Apply label</option>
+      <option value="dev">dev</option>
+      <option value="personal">personal</option>
+      <option value="gschool">gschool</option>
+    </select>
+
+    <select class="form-control label-select"
+     ng-model="selectedRemoveLabel"
+      ng-change="$ctrl.removeLabel($ctrl.datamsgs,selectedRemoveLabel)">
+      <option>Remove label</option>
+      <option value="dev">dev</option>
+      <option value="personal">personal</option>
+      <option value="gschool">gschool</option>
+    </select>
+
+    <button class="btn btn-default">
+      <i class="fa fa-trash-o"
+       ng-click="$ctrl.deleteMessage($ctrl.datamsgs)"></i>
+    </button>
+  </div>
+</div>
