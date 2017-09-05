@@ -3,40 +3,77 @@
   angular
   .module('angular-inbox', )
   .controller('toolbarController', toolbarController)
-  function toolbarController(){
+  function toolbarController($http){
     const vm=this
     vm.$onInit=function(){
+
+      vm.countUnreadMessages = function(message){
+       if (message !==undefined) {
+         var count=0
+         for (var i = 0; i < message.length; i++) {
+         if (message[i].read == false) {
+           count++
+         }
+         }
+         return count
+       }
+
+      }
       vm.allSelected=function (messages){
-        return status=messages.every(function(data){
-          return data.selected==true
-        })
+        if (messages !==undefined) {
+
+          return status=messages.every(function(data){
+            return data.selected == true
+          })
+        }
+
       }
       vm.someSelected=function (messages){
-        const someMsgs=messages.some(function(data){
-          return data.selected==true
-        })
-        const allMsgs=messages.every(function(data){
-          return data.selected==true
-        })
-        return  someMsgs && !allMsgs
+        if (messages !==undefined) {
+          const someMsgs=messages.some(function(data){
+            return data.selected==true
+          })
+          const allMsgs=messages.every(function(data){
+            return data.selected==true
+          })
+          return  someMsgs && !allMsgs
+        }
+
       }
       vm.allNotSelected=function (messages){
+        if (messages !== undefined) {
           return status=messages.every(function(data){
-            return data.selected!==true
+            return data.selected !==true
           })
+        }
+
         }
     }
     vm.markAsRead=function(messages){
       for (var i = 0; i < messages.length; i++) {
         if (messages[i].selected) {
           messages[i].read=true
+          var body ={
+            read:true
+          }
+          // $http.put(`http://localhost:3000/messages/edit/${messages[i].id}`,body).then(function(message){
+          //
+          // })
         }
       }
     }
     vm.markAsUnRead=function(messages){
+      console.log(messages);
       for (var i = 0; i < messages.length; i++) {
         if (messages[i].selected) {
+
           messages[i].read=false
+          var body ={
+            read:false
+          }
+          // $http.put(`http://localhost:3000/messages/edit/${messages[i].id}`,body).then(function(message){
+          //
+          // })
         }
       }
     }
@@ -45,6 +82,12 @@
         var labelExist=messages[i].labels.includes(label)
         if (messages[i].selected && !labelExist ) {
           messages[i].labels.push(label)
+        var body={ message_id: messages[i].id,
+         label: label}
+        console.log(body);
+        $http.post(`http://localhost:3000/messages/addLabel/`,body).then(function(message){
+
+        })
         }
       }
     }
@@ -55,6 +98,11 @@
           console.log(index);
           if (index > -1) {
           messages[i].labels.splice(index, 1);
+          var body1={ message_id: messages[i].id,
+           label: label}
+          console.log(body1);
+          $http.delete(`http://localhost:3000/messages/deleteLabel/${messages[i].id}/${label}`).then(function(message){
+          })
           }
         }
       }
@@ -76,24 +124,16 @@
         }
       }
     }
-    vm.countUnreadMessages=function(messages){
-      var count=0
-      for (var i = 0; i < messages.length; i++) {
-      if (messages[i].read == false) {
-        count++
-      }
-      }
-      return count
-    }
+
     vm.deleteMessage=function(messages){
+
     for (var i = 0; i < messages.length; i++) {
       if (messages[i].selected) {
-        console.log(messages[i]);
-        console.log(i);
+
         messages.splice(i, 1);
         i--
       }
-        console.log(messages);
+
     }
     }
   }

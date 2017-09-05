@@ -11,9 +11,10 @@
 
       ng-click="$ctrl.changeSelect($ctrl.datamsgs)"
       ng-class="{
-        'fa-square-o':$ctrl.allNotSelected($ctrl.datamsgs),
+
         'fa-minus-square-o':$ctrl.someSelected($ctrl.datamsgs),
-        'fa-check-square-o':$ctrl.allSelected($ctrl.datamsgs)
+        'fa-check-square-o':$ctrl.allSelected($ctrl.datamsgs),
+          'fa-square-o':$ctrl.allNotSelected($ctrl.datamsgs)
       }"></i>
 
     </button>

@@ -6,12 +6,15 @@
   angular
   .module('angular-inbox')
   .controller('inboxController',inboxController)
-
-  function inboxController(){
+inboxController.$inject = ['$http']
+  function inboxController($http){
     const vm=this
-    vm.$onInit= function(){
-      var data=angular.fromJson(json)
-      vm.messages=data
+    vm.$onInit = function(){
+      $http.get('https://young-lake-58938.herokuapp.com/api/messages').then(function(messages){
+        vm.messages=messages.data._embedded.messages
+
+      })
+        console.log(vm);
     }
   }
 }());

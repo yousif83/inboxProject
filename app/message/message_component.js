@@ -7,6 +7,7 @@
     templateUrl:'app/message/message_template.html',
     bindings: {
        data: '<'
+
      }
   })
 }());
