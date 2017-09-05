@@ -50,32 +50,42 @@
         }
     }
     vm.markAsRead=function(messages){
+      var messageIds=[]
       for (var i = 0; i < messages.length; i++) {
         if (messages[i].selected) {
           messages[i].read=true
-          var body ={
-            read:true
-          }
-          // $http.put(`http://localhost:3000/messages/edit/${messages[i].id}`,body).then(function(message){
-          //
-          // })
+          messageIds.push(messages[i].id)
         }
       }
+      var body={
+        messageIds:messageIds,
+        command:'read',
+        read:true
+      }
+      $http.patch(`https://young-lake-58938.herokuapp.com/api/messages`,JSON.stringify(body))
+        .then(function(response){
+        })
+
     }
     vm.markAsUnRead=function(messages){
+      var UnreadmessageIds=[]
       console.log(messages);
       for (var i = 0; i < messages.length; i++) {
         if (messages[i].selected) {
-
           messages[i].read=false
-          var body ={
-            read:false
-          }
-          // $http.put(`http://localhost:3000/messages/edit/${messages[i].id}`,body).then(function(message){
-          //
-          // })
+          UnreadmessageIds.push(messages[i].id)
+
         }
       }
+      var body={
+        messageIds:UnreadmessageIds,
+        command:'read',
+        read:false
+      }
+      $http.patch(`https://young-lake-58938.herokuapp.com/api/messages`,JSON.stringify(body))
+        .then(function(response){
+        })
+
     }
     vm.addLabel=function(messages,label){
       for (var i = 0; i < messages.length; i++) {
@@ -127,14 +137,23 @@
 
     vm.deleteMessage=function(messages){
 
+   var deleteArr =[]
     for (var i = 0; i < messages.length; i++) {
       if (messages[i].selected) {
-
+        deleteArr.push(messages[i].id)
         messages.splice(i, 1);
         i--
       }
 
     }
+    var body={
+      messageIds:deleteArr,
+      command:'delete'
+
+    }
+    $http.patch(`https://young-lake-58938.herokuapp.com/api/messages`,JSON.stringify(body))
+      .then(function(response){
+      })
     }
   }
 
