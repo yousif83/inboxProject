@@ -9,7 +9,8 @@
     vm.$onInit=function(){
       console.log(vm);
     }
-    vm.addMessage=function(messages,txtBody,txtSubject){
+    vm.addMessage=function(messages,txtBody,txtSubject,hideform){
+      hideform.flag=true
       var mainBody ={
         subject:txtSubject,
         body:txtBody
@@ -17,7 +18,7 @@
       console.log(mainBody);
       $http.post(url,JSON.stringify(mainBody))
       .then(function(response){
-       console.log(response.data);
+       console.log(response.data.body);
        messages.push(response.data)
       })
     }
