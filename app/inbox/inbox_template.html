@@ -3,6 +3,11 @@
 
 
   <toolbar
-  datamsgs="$ctrl.messages"> </toolbar>
+  datamsgs="$ctrl.messages"
+  showform="$ctrl.showForm"
+  > </toolbar>
+  <compose
+
+  ng-hide=$ctrl.showForm.flag>  </compose>
 <messagelist
 datamsg="$ctrl.messages"> </messagelist>

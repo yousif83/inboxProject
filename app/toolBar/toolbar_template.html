@@ -5,6 +5,11 @@
       <span class="badge badge">{{$ctrl.countUnreadMessages($ctrl.datamsgs)}}</span>
       unread messages
     </p>
+    <a class="btn btn-danger"
+      ng-click="$ctrl.toggleForm($ctrl.showform)">
+
+     <i class="fa fa-plus"></i>
+   </a>
 
     <button class="btn btn-default"
       ng-click="$ctrl.changeSelect($ctrl.datamsgs)">

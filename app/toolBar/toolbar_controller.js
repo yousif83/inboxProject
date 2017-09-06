@@ -3,7 +3,7 @@
   angular
   .module('angular-inbox', )
   .controller('toolbarController', toolbarController)
-  function toolbarController($http){
+  function toolbarController($http ){
     var url = "https://young-lake-58938.herokuapp.com/api/messages"
     const vm=this
     vm.$onInit=function(){
@@ -122,7 +122,7 @@
         }
        $http.patch(url,JSON.stringify(body))
        .then(function(response){
-         
+
        })
     }
 
@@ -160,6 +160,10 @@
     $http.patch(url,JSON.stringify(body))
       .then(function(response){
       })
+    }
+    vm.toggleForm=function(show){
+
+      show.flag= !show.flag
     }
   }
 

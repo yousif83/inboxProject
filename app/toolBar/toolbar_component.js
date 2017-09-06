@@ -6,7 +6,9 @@
     controller:'toolbarController',
     templateUrl:'app/toolBar/toolbar_template.html',
     bindings: {
-       datamsgs: '<'
+       datamsgs: '<',
+       showform: '<'
+
      }
   })
 }());
