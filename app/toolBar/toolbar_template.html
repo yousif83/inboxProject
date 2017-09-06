@@ -6,10 +6,11 @@
       unread messages
     </p>
 
-    <button class="btn btn-default">
+    <button class="btn btn-default"
+      ng-click="$ctrl.changeSelect($ctrl.datamsgs)">
       <i class="fa "
 
-      ng-click="$ctrl.changeSelect($ctrl.datamsgs)"
+
       ng-class="{
 
         'fa-minus-square-o':$ctrl.someSelected($ctrl.datamsgs),
@@ -47,9 +48,10 @@
       <option value="gschool">gschool</option>
     </select>
 
-    <button class="btn btn-default">
+    <button class="btn btn-default"
+    ng-click="$ctrl.deleteMessage($ctrl.datamsgs)">
       <i class="fa fa-trash-o"
-       ng-click="$ctrl.deleteMessage($ctrl.datamsgs)"></i>
+       ></i>
     </button>
   </div>
 </div>
