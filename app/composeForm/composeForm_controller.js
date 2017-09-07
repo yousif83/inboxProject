@@ -8,8 +8,8 @@
      const vm=this
     vm.$onInit=function(){
     }
-    vm.addMessage=function(messages,txtBody,txtSubject,hidefrm){
-      hidefrm.flag=true
+    vm.addMessage=function(messages,txtBody,txtSubject,hideform){
+      hideform.flag=true
       var mainBody ={
         subject:txtSubject,
         body:txtBody
