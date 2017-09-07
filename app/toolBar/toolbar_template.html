@@ -26,25 +26,30 @@
     </button>
 
     <button class="btn btn-default"
+    ng-disabled="$ctrl.allNotSelected($ctrl.datamsgs)"
     ng-click="$ctrl.markAsRead($ctrl.datamsgs)">
      Mark As Read
     </button>
 
     <button class="btn btn-default"
+      ng-disabled="$ctrl.allNotSelected($ctrl.datamsgs)"
     ng-click="$ctrl.markAsUnRead($ctrl.datamsgs)">
       Mark As Unread
     </button>
 
     <select class="form-control label-select"
+      ng-disabled="$ctrl.allNotSelected($ctrl.datamsgs)"
      ng-model="selectedLabel"
      ng-Change="$ctrl.addLabel($ctrl.datamsgs,selectedLabel)">
-      <option   >Apply label</option>
+       <option value=" " ng-if="false"></option>
+      <option  >Apply label</option>
       <option value="dev">dev</option>
       <option value="personal">personal</option>
       <option value="gschool">gschool</option>
     </select>
 
     <select class="form-control label-select"
+      ng-disabled="$ctrl.allNotSelected($ctrl.datamsgs)"
      ng-model="selectedRemoveLabel"
       ng-change="$ctrl.removeLabel($ctrl.datamsgs,selectedRemoveLabel)">
       <option>Remove label</option>
@@ -54,6 +59,7 @@
     </select>
 
     <button class="btn btn-default"
+      ng-disabled="$ctrl.allNotSelected($ctrl.datamsgs)"
     ng-click="$ctrl.deleteMessage($ctrl.datamsgs)">
       <i class="fa fa-trash-o"
        ></i>
